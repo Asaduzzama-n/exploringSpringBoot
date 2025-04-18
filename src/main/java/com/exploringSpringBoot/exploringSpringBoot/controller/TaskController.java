@@ -22,18 +22,19 @@ public class TaskController {
     public TasksEntry createTaskEntry(@RequestBody TasksEntry entry) {
         taskEntries.put(entry.getId(),entry);
         return entry;
+
     }
-    @GetMapping("/task")
-    public TasksEntry getTaskEntryById(@RequestParam Long id) {
+    @GetMapping("/task/{id}")
+    public TasksEntry getTaskEntryById(@PathVariable Long id) {
         System.out.println("ID: " + id);
         return taskEntries.get(id);
     }
-    @PatchMapping("/task")
-    public TasksEntry updateTaskEntry(@RequestParam Long id, @RequestBody TasksEntry entry) {
+    @PatchMapping("/task/{id}")
+    public TasksEntry updateTaskEntry(@PathVariable Long id, @RequestBody TasksEntry entry) {
        return taskEntries.put(id,entry);
     }
-    @DeleteMapping("/task")
-    public boolean deleteTaskEntryById(@RequestParam Long id) {
+    @DeleteMapping("/task/{id}")
+    public boolean deleteTaskEntryById(@PathVariable Long id) {
         taskEntries.remove(id);
         return true;
     }
